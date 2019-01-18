@@ -170,22 +170,56 @@
     
     
     if([textField isEqual:self.billTotalField]){
-        NSLog(@"typing into total amount");
-        NSString *newValueString = [self.billTotalField.text stringByAppendingString:string];
-        billAmount = [newValueString floatValue];
+        if(range.length == 1){
+            
+            NSString *newValueString = [self.billTotalField.text substringFromIndex:range.length];
+            billAmount = [newValueString floatValue];
+        }else{
+            
+            NSString *newValueString = [self.billTotalField.text stringByAppendingString:string];
+            billAmount = [newValueString floatValue];
+        }
+       
+        
         
     }else if([textField isEqual:self.tipPercentField]){
         
-        NSString *newValueString = [self.tipPercentField.text stringByAppendingString:string];
-        tipPercent = [newValueString floatValue];
-    }else if([textField isEqual:self.tipPercentField]){
         
-        NSString *newValueString = [self.tipAmountField.text stringByAppendingString:string];
-        tipAmount = [newValueString floatValue];
-    }else if([textField isEqual:self.tipPercentField]){
+        if(range.length == 1){
+            NSString *newValueString = [self.tipPercentField.text substringFromIndex:range.length];
+            tipPercent = [newValueString floatValue];
+            
+        }else{
+            
+            NSString *newValueString = [self.tipPercentField.text stringByAppendingString:string];
+            tipPercent = [newValueString floatValue];
+        }
         
-        NSString *newValueString = [self.totalField.text stringByAppendingString:string];
-        totalAmount = [newValueString floatValue];
+    }else if([textField isEqual:self.tipAmountField]){
+        if(range.length == 1){
+            
+            
+            NSString *newValueString = [self.tipAmountField.text substringFromIndex:range.length];
+            tipAmount = [newValueString floatValue];
+        }else{
+            
+            NSString *newValueString = [self.tipAmountField.text stringByAppendingString:string];
+            tipAmount = [newValueString floatValue];
+        }
+        
+        
+    }else if([textField isEqual:self.totalField]){
+        if(range.length == 1){
+            
+            NSString *newValueString = [self.totalField.text substringFromIndex:range.length];
+            totalAmount = [newValueString floatValue];
+        }else{
+            
+            NSString *newValueString = [self.totalField.text stringByAppendingString:string];
+            totalAmount = [newValueString floatValue];
+        }
+        
+        
     }
     
     
