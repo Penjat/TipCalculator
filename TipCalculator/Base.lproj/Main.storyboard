@@ -34,7 +34,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,14 +112,32 @@
                                     <constraint firstItem="2KO-F8-eC4" firstAttribute="top" secondItem="AFt-Ps-CQX" secondAttribute="bottom" constant="8" id="ypv-M7-Oby"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0E-3M-47R">
+                                <rect key="frame" x="30" y="323" width="315" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="2xr-E4-ZsF">
+                                <rect key="frame" x="28" y="269" width="319" height="31"/>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="eYB-VO-lpe"/>
+                                </connections>
+                            </slider>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.97074075341663613" blue="0.61490376241488831" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="lEX-Ql-3ki" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="1lZ-oE-UGU"/>
+                            <constraint firstItem="2xr-E4-ZsF" firstAttribute="width" secondItem="lEX-Ql-3ki" secondAttribute="width" id="46M-BA-kfT"/>
+                            <constraint firstItem="2xr-E4-ZsF" firstAttribute="centerX" secondItem="lEX-Ql-3ki" secondAttribute="centerX" id="Bf2-Nm-Z5g"/>
                             <constraint firstItem="GEU-wB-kjg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="35" id="D3b-qz-W8x"/>
                             <constraint firstItem="lEX-Ql-3ki" firstAttribute="width" secondItem="GEU-wB-kjg" secondAttribute="width" id="Gk9-WO-fVh"/>
+                            <constraint firstItem="g0E-3M-47R" firstAttribute="top" secondItem="2xr-E4-ZsF" secondAttribute="bottom" constant="24" id="Hjj-N2-wxQ"/>
+                            <constraint firstItem="g0E-3M-47R" firstAttribute="centerX" secondItem="2xr-E4-ZsF" secondAttribute="centerX" id="QtA-JL-jul"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lEX-Ql-3ki" secondAttribute="trailing" constant="30" id="SJn-pU-CsL"/>
                             <constraint firstItem="GEU-wB-kjg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="ZDu-ek-yiY"/>
+                            <constraint firstItem="2xr-E4-ZsF" firstAttribute="top" secondItem="lEX-Ql-3ki" secondAttribute="bottom" constant="20" id="chr-zS-WAB"/>
+                            <constraint firstItem="g0E-3M-47R" firstAttribute="width" secondItem="2xr-E4-ZsF" secondAttribute="width" id="gdN-EC-Flv"/>
                             <constraint firstItem="lEX-Ql-3ki" firstAttribute="top" secondItem="GEU-wB-kjg" secondAttribute="bottom" constant="8" id="mU6-Tm-pR4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GEU-wB-kjg" secondAttribute="trailing" constant="30" id="qA8-rX-v1y"/>
                         </constraints>
@@ -129,6 +147,8 @@
                         <outlet property="billTotalField" destination="jbV-11-fu7" id="6wF-sY-pFR"/>
                         <outlet property="tipAmountField" destination="AFt-Ps-CQX" id="gR0-o9-fz9"/>
                         <outlet property="tipPercentField" destination="Vbm-UZ-Rc4" id="Y8Z-ts-GAF"/>
+                        <outlet property="tipRating" destination="g0E-3M-47R" id="CtJ-2W-3cn"/>
+                        <outlet property="tipSlider" destination="2xr-E4-ZsF" id="SAv-GI-X35"/>
                         <outlet property="totalField" destination="2KO-F8-eC4" id="fBB-aG-TGs"/>
                     </connections>
                 </viewController>
