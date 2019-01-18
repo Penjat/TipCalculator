@@ -33,15 +33,25 @@
 - (IBAction)sliderChanged:(UISlider*)slider {
     NSLog(@"slider changed %f",slider.value);
     self.tipPercentField.text = [NSString stringWithFormat:@"%.01f" ,slider.value];
-    [self calculateValues:4];
+    [self calculateValuesWithTag:4];
 }
--(void)calculateValues:(long int)tag {
-    
-    //get all the values
+-(void)calculateValuesWithTag:(long int)tag{
     float billAmount = [self.billTotalField.text floatValue];
     float tipPercent = [self.tipPercentField.text floatValue];
     float tipAmount = [self.tipAmountField.text floatValue];
     float totalAmount = [self.totalField.text floatValue];
+    
+    [self calculateValuesWithTag:tag andBill:billAmount andPercent:tipPercent andTipAmount:tipAmount andTotalAmt:totalAmount];
+    
+}
+-(void)calculateValuesWithTag:(long int)tag andBill:(float)bill andPercent:(float)percent andTipAmount:(float)tipAmt andTotalAmt:(float)totalAmt{
+    //this method is called specifically when we need to append a textFields value in order to get real time updates
+    
+    //get all the values
+    float billAmount = bill;
+    float tipPercent = percent;
+    float tipAmount = tipAmt;
+    float totalAmount = totalAmt;
     
     //calculate based on tip percent
     if(tag == 0 || tag == 1 || tag == 4){
@@ -85,7 +95,7 @@
     
 }
 -(void)rateTip:(float)tipPercent{
-    int rating = 1;
+    
     if(tipPercent < 0){
         self.tipRating.text = @"that... is stealing...";
         return;
@@ -152,13 +162,42 @@
     
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    [self calculateValues:textField.tag];
+    
+    float billAmount = [self.billTotalField.text floatValue];
+    float tipPercent = [self.tipPercentField.text floatValue];
+    float tipAmount = [self.tipAmountField.text floatValue];
+    float totalAmount = [self.totalField.text floatValue];
+    
+    
+    if([textField isEqual:self.billTotalField]){
+        NSLog(@"typing into total amount");
+        NSString *newValueString = [self.billTotalField.text stringByAppendingString:string];
+        billAmount = [newValueString floatValue];
+        
+    }else if([textField isEqual:self.tipPercentField]){
+        
+        NSString *newValueString = [self.tipPercentField.text stringByAppendingString:string];
+        tipPercent = [newValueString floatValue];
+    }else if([textField isEqual:self.tipPercentField]){
+        
+        NSString *newValueString = [self.tipAmountField.text stringByAppendingString:string];
+        tipAmount = [newValueString floatValue];
+    }else if([textField isEqual:self.tipPercentField]){
+        
+        NSString *newValueString = [self.totalField.text stringByAppendingString:string];
+        totalAmount = [newValueString floatValue];
+    }
+    
+    
+    [self calculateValuesWithTag:textField.tag andBill:billAmount andPercent:tipPercent andTipAmount:tipAmount andTotalAmt:totalAmount];
+    
+    
     return YES;
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     NSLog(@"enter was pressed");
     //TODO use tag to tell which on was pressed
-    [self calculateValues:textField.tag];
+    [self calculateValuesWithTag:textField.tag];
     
     return YES;
 }
